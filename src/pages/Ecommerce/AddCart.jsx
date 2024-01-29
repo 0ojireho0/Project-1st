@@ -6,7 +6,7 @@ import { useCart } from 'react-use-cart'
 const AddCart = () => {
 
     const { isEmpty, items, cartTotal, updateItemQuantity, removeItem } = useCart()
-    if (isEmpty) return <h1>No items added</h1>
+    if (isEmpty) return <h1 className='text-center mt-10 font-bold text-3xl'>No items added</h1>
 
 
 
