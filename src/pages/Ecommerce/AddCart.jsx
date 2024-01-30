@@ -6,6 +6,9 @@ const AddCart = () => {
 
     const { isEmpty, items, cartTotal, updateItemQuantity, removeItem } = useCart()
     if (isEmpty) return <h1 className='text-center mt-10 font-bold text-3xl'>No items added</h1>
+   
+    
+    
 
 
   return (
@@ -15,7 +18,7 @@ const AddCart = () => {
  
     {items.map((product,i)=>{
         return(
-            <Card className='ml-5 flex-row items-center justify-center' shadow={false}>
+            <Card className='ml-5 flex-row items-center justify-center' shadow={false} key={i}>
                 <CardHeader className='w-10 h-full' floated={false}>
                     <img src={product.image} alt="" className='object-contain md:w-52'/>
                 </CardHeader>
