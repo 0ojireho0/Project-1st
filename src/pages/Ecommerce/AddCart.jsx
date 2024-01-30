@@ -20,7 +20,7 @@ const AddCart = () => {
                     <img src={product.image} alt="" className='object-contain md:w-52'/>
                 </CardHeader>
                 <CardBody className='w-50 items-center md:left-0 md:flex '>
-                    <Typography variant="h6" className='truncate w-32 md:overflow-visible md:mr-96 '>{product.title}</Typography>
+                    <Typography variant="h6" className='truncate w-32 md:w-96 md:mr-96 '>{product.title}</Typography>
                     <Typography className='w-32 text-xs md:text-lg'>Price: ${product.price}</Typography>
                     <div className='flex items-center'>
                         <Button size='sm' className='mr-2' onClick={() => updateItemQuantity(product.id, product.quantity - 1)}>-</Button>
