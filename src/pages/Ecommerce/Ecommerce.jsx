@@ -30,12 +30,13 @@ const Ecommerce = () => {
 
   return (
     <>
+    
     <Card shadow={false} className='items-center justify-center top-16'>
       <CardHeader floated={false} shadow={false}>
-        <Typography>Buy Now!</Typography>
+        
+        {loading ? <FontAwesomeIcon icon={faSpinner} spin className='flex m-auto mt-3' /> : <Typography>Buy Now!</Typography>}
       </CardHeader>
       <CardBody>
-        {loading ? <FontAwesomeIcon icon={faSpinner} spin className='flex m-auto mt-3' /> : ""}
         <div className='grid md:grid-cols-2 lg:grid-cols-4 gap-5 grid-cols-1 md:mx-10'>
         {products.map(item => <AllProducts key={item.id} item={item} ></AllProducts>     )}
         </div>
