@@ -16,18 +16,18 @@ const AddCart = () => {
     {items.map((product,i)=>{
         return(
             <Card className='ml-5 flex-row items-center justify-center' shadow={false}>
-                <CardHeader className='w-10 h-full md:max-w-10' floated={false}>
+                <CardHeader className='w-10 h-full' floated={false}>
                     <img src={product.image} alt="" className='object-contain md:w-52'/>
                 </CardHeader>
-                <CardBody className='w-50 items-center md:left-0 md:flex '>
-                    <Typography variant="h6" className='truncate w-32 md:w-96 md:mr-96 '>{product.title}</Typography>
+                <CardBody className='w-50 '>
+                    <Typography variant="h6" className='truncate w-32 md:w-96 '>{product.title}</Typography>
                     <Typography className='w-32 text-xs md:text-lg'>Price: ${product.price}</Typography>
                     <div className='flex items-center'>
                         <Button size='sm' className='mr-2' onClick={() => updateItemQuantity(product.id, product.quantity - 1)}>-</Button>
                         <Typography>{product.quantity}</Typography>
                         <Button className='ml-2' size='sm' onClick={() => updateItemQuantity(product.id, product.quantity + 1)}>+</Button>
                     </div>
-                    <Button size='sm' className='ml-2 mt-2 md:mt-0' onClick={() => removeItem(product.id)}>REMOVE</Button>
+                    <Button size='sm' className='ml-2 mt-2' onClick={() => removeItem(product.id)}>REMOVE</Button>
                 </CardBody>
             </Card>
         )
