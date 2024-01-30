@@ -34,7 +34,7 @@ const Ecommerce = () => {
     <Card shadow={false} className='items-center justify-center top-16'>
       <CardHeader floated={false} shadow={false}>
         
-        {loading ? <FontAwesomeIcon icon={faSpinner} spin className='flex m-auto mt-3' /> : <Typography>Buy Now!</Typography>}
+        {loading ? <FontAwesomeIcon icon={faSpinner} spin size='2xl' className='flex m-auto mt-3' /> : <Typography>Buy Now!</Typography>}
       </CardHeader>
       <CardBody>
         <div className='grid md:grid-cols-2 lg:grid-cols-4 gap-5 grid-cols-1 md:mx-10'>
