@@ -9,8 +9,6 @@ import {
 } from "@material-tailwind/react";
 import { useCart } from 'react-use-cart';
 
-
-
 const AllProducts = ({ item }) => {
   const { title, image, price, description, rating } = item;
   const [popupToggle, setPopupToggle] = useState(false);
@@ -21,60 +19,50 @@ const AllProducts = ({ item }) => {
 
   const { addItem } = useCart();
 
-  
-
-
-
-
   return (
     <>
-      <Card className="cursor-pointer items-center" onClick={() => changeContent(item)}>
-        <CardHeader floated={false}>
-          <div className="h-96 flex">
-            <img src={image} alt="card-image" className="object-contain" />
-          </div>
-        </CardHeader>
-        <CardBody>
-          <Typography variant="h5" color="blue-gray" className="mb-2">
-            {title}
-          </Typography>
-          <Typography variant="h6">Price: {price}$</Typography>
-          <Typography variant="h6">Rates: {rating.rate}</Typography>
-        </CardBody>
-        <CardFooter className="pt-0">
-          <Button>Read More</Button>
-        </CardFooter>
-      </Card>
+    <Card className='w-full items-center cursor-pointer p-2' onClick={() => changeContent(item)}>
+      <CardHeader className='h-80 md:h-40 lg:h-80' floated={false}>
+        <img src={image} alt="" className='object-contain w-full h-full'/>
+      </CardHeader>
+      <CardBody className='h-52 lg:h-52 md:h-40'>
+        <Typography variant="h6" color="blue-gray" className="mb-2 text-sm">{title}</Typography>
+        <Typography className='text-sm'>Price: {price}</Typography>
+        <Typography className='text-sm'>Rates: {rating.rate}</Typography>
+      </CardBody>
+      <CardFooter className='pt-0'>
+        <Button>Read More</Button>
+      </CardFooter>
+    </Card>
 
-      {popupToggle && (
+    {popupToggle && (
         <div className='bg-black/[.5] top-0 right-0 left-0 bottom-0 fixed z-50'>
-          <Card className='md:top-40 top-10 h-[30rem] max-h-screen h-96 lg:w-3/5 lg:max-w-5xl lg:min-w-[55rem] lg:max-h-[30rem] lg:min-h-[30rem] md:w-1/2 md:h-2/3 lg:bottom-20 justify-center lg:flex-row md:z-50 md:ml-52'>
-            <button onClick={() => setPopupToggle(false)} className='font-bold lg:ml-[50rem] lg:mt-5 lg:absolute md:ml-80'>x</button>
-            <CardHeader floated={false} shadow={false} className='lg:m-20'>
-              <img src={image} alt="" className='lg:w-60 lg:h-60 md:h-96 md:object-contain '/>
+          <Card className='w-full left-0 min-h-96 fixed items-center z-50 top-20 md:top-32 justify-center md:flex-row'>
+            <button className='top-5 right-10 md:absolute' size='sm' onClick={() => changeContent(item)} variant='gradient'>X</button>
+            <CardHeader className='w-52 h-52 ' floated={false}>
+              <img src={image} alt="" className='object-contain h-full w-full'/>
             </CardHeader>
-            <CardBody className='w-96 text-justify'>
-              <Typography color='gray' variant='h4' className='md:mb-4'>
-                {title}
-              </Typography>
-              <Typography color='gray' className='font-normal md:mb-4 text-xs md:text-base'>
-                {description}
-              </Typography>
-              <Typography color='gray' variant='h6' className=''>
-                ${price}
-              </Typography>
-              <Typography color='gray' variant='h6'>
-                Rates: {rating.rate}
-              </Typography>
-              <Button size='sm' variant='gradient' onClick={() => addItem(item)}>
-                Add to Cart
-              </Button>
+            <CardBody className='text-justify md:w-1/3'>
+              <Typography variant='h6' className=''>{title}</Typography>
+              <Typography className='text-xs'>{description}</Typography>
+              <Typography>Price: ${price}</Typography>
+              <Typography>Rates: {rating.rate}</Typography>   
+              <div className='items-center justify-center flex md:block'>
+                <Button size='sm' variant='gradient' onClick={() => addItem(item)} className='block'>
+                    Add to Cart
+                </Button>
+              </div>
             </CardBody>
+
+
           </Card>
         </div>
-      )}
-    </>
-  );
-};
 
-export default AllProducts;
+    )}
+      
+
+    </>
+  )
+}
+
+export default AllProducts
