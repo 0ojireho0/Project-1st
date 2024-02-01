@@ -7,19 +7,19 @@ import { Card, CardBody, CardHeader, Typography } from '@material-tailwind/react
 
 const Ecommerce = () => {
   const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [fetchingData, setFetchingData] = useState(true);
+  const [loadingMore, setLoadingMore] = useState(false);
   const [visibleProducts, setVisibleProducts] = useState(8);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        setLoading(true);
         const response = await axios.get('https://fakestoreapi.com/products');
         setProducts(response.data);
-        setLoading(false);
+        setFetchingData(false);
       } catch (error) {
         console.log(error);
-        setLoading(false);
+        setFetchingData(false);
       }
     };
 
@@ -27,17 +27,18 @@ const Ecommerce = () => {
   }, []);
 
   const loadMore = () => {
-    setLoading(true);
+    setLoadingMore(true);
     setTimeout(() => {
       setVisibleProducts((prevVisibleProducts) => prevVisibleProducts + 8);
-      setLoading(false);
+      setLoadingMore(false);
     }, 500);
   };
 
   const handleScroll = () => {
     if (
       window.innerHeight + window.scrollY >= document.body.offsetHeight - 100 &&
-      !loading
+      !loadingMore &&
+      !fetchingData
     ) {
       // User has scrolled to the bottom, and not currently loading
       loadMore();
@@ -49,13 +50,13 @@ const Ecommerce = () => {
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, [loading, visibleProducts]);
+  }, [loadingMore, visibleProducts, fetchingData]);
 
   return (
     <>
       <Card shadow={false} className='items-center justify-center top-16'>
         <CardHeader floated={false} shadow={false}>
-          {loading ? (
+          {fetchingData ? (
             <FontAwesomeIcon icon={faSpinner} spin size='2xl' className='flex m-auto mt-3' />
           ) : (
             <Typography>Buy Now!</Typography>
@@ -67,6 +68,11 @@ const Ecommerce = () => {
               <AllProducts key={item.id} item={item} />
             ))}
           </div>
+          {loadingMore && visibleProducts < products.length && (
+            <div className='flex justify-center mt-4'>
+              <FontAwesomeIcon icon={faSpinner} spin size='2x' />
+            </div>
+          )}
         </CardBody>
       </Card>
     </>
