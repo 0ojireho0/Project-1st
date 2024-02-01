@@ -1,0 +1,20 @@
+{
+    "routes": [
+        {
+            "src" : "/",
+            "dest" : "/"
+        },
+        {
+            "src" : "/ecommerce",
+            "dest" : "/"
+        },
+        {
+            "src" : "/addcart",
+            "dest" : "/"
+        },
+        {
+            "src" : "*",
+            "dest" : "/"
+        }
+    ]
+}
