@@ -40,7 +40,6 @@ const Ecommerce = () => {
       !loadingMore &&
       !fetchingData
     ) {
-      // User has scrolled to the bottom, and not currently loading
       loadMore();
     }
   };

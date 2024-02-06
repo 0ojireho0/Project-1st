@@ -12,7 +12,7 @@ export const ShopContextProvider = (props) => {
             try {
                 const response = await axios.get('https://fakestoreapi.com/products');
                 const cart = {};
-                response.data.forEach((product, index) => {
+                response.data.forEach((product) => {
                     cart[product.id] = 0;
                 });
                 setCartItems(cart);
