@@ -64,8 +64,8 @@ const Ecommerce = () => {
         </CardHeader>
         <CardBody>
           <div className='grid md:grid-cols-2 lg:grid-cols-4 gap-5 grid-cols-1 md:mx-10'>
-            {products.slice(0, visibleProducts).map((item) => (
-              <AllProducts key={item.id} item={item} />
+            {products.slice(0, visibleProducts).map((item, id) => (
+              <AllProducts data={item} key={id} />
             ))}
           </div>
           {loadingMore && visibleProducts < products.length && (

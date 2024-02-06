@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react';
+import { ShopContext } from './ShopContext';
 import {
   Card,
   CardHeader,
@@ -7,21 +8,25 @@ import {
   Typography,
   Button,
 } from "@material-tailwind/react";
-import { useCart } from 'react-use-cart';
 
-const AllProducts = ({ item }) => {
-  const { title, image, price, description, rating } = item;
+
+const AllProducts = (props) => {
+
+  const { id, title, image, price, description, rating } = props.data;
+  const {addToCart, cartItems} = useContext(ShopContext);
+  const cartItemAmount = cartItems[id]
+
   const [popupToggle, setPopupToggle] = useState(false);
 
   const changeContent = () => {
     setPopupToggle(!popupToggle);
   };
 
-  const { addItem } = useCart();
+
 
   return (
     <>
-    <Card className='w-full items-center cursor-pointer p-2' onClick={() => changeContent(item)}>
+    <Card className='w-full items-center cursor-pointer p-2' onClick={() => changeContent(props)}>
       <CardHeader className='h-80 md:h-40 lg:h-80' floated={false}>
         <img src={image} alt="" className='object-contain w-full h-full'/>
       </CardHeader>
@@ -38,7 +43,7 @@ const AllProducts = ({ item }) => {
     {popupToggle && (
         <div className='bg-black/[.5] top-0 right-0 left-0 bottom-0 fixed z-50'>
           <Card className='w-full left-0 min-h-96 fixed items-center z-50 top-20 md:top-32 justify-center md:flex-row'>
-            <button className='top-5 right-10 md:absolute' size='sm' onClick={() => changeContent(item)} variant='gradient'>X</button>
+            <button className='top-5 right-10 md:absolute' size='sm' onClick={() => changeContent(props)} variant='gradient'>X</button>
             <CardHeader className='w-52 h-52 ' floated={false}>
               <img src={image} alt="" className='object-contain h-full w-full'/>
             </CardHeader>
@@ -48,7 +53,7 @@ const AllProducts = ({ item }) => {
               <Typography>Price: ${price}</Typography>
               <Typography>Rates: {rating.rate}</Typography>   
               <div className='items-center justify-center flex md:block'>
-                <Button size='sm' variant='gradient' onClick={() => addItem(item)} className='block'>
+                <Button size='sm' variant='gradient' onClick={() => addToCart(id)} className='block'>
                     Add to Cart
                 </Button>
               </div>
